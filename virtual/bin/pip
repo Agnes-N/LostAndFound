@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 #!/home/wecode/Documents/LostFound/virtual/bin/python
+=======
+#!/home/wecode/Desktop/LostAndFound/virtual/bin/python
+>>>>>>> 876479750757f0e5dd8ab2faec9d9446897b6567
 # -*- coding: utf-8 -*-
 import re
 import sys

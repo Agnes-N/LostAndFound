@@ -1,0 +1,3 @@
+Hello {{user.username}}
+Welcome to Lost and found
+We have just seen you have signed up for our application and want to welcome you to the family. Please enjoy to feel free search for  Lost Document and here you can Post a document you have found to let its owner get it back. 
