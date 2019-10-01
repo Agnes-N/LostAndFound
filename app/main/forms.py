@@ -9,4 +9,4 @@ class LostForm(FlaskForm):
     category = SelectField('Category',choices=[('National_ID','National_ID'),('Passport','Passport'),('degree','degree')], validators=[Required()])
     address = TextAreaField('Your address', validators=[Required()])
     
-    submit = SubmitField('Pitch')
+    submit = SubmitField('submit')
