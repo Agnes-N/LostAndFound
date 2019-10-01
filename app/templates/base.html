@@ -1,22 +1,21 @@
-<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        {% if title %}
-        <title> {{ title }}</title>
-        {% else %}
-        <title> Welcome to the best Movie Review website </title>
-        {% endif %}
-    </head>
-    <body>
-        <!-- Content block -->
+<header>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+</header>
+<body class="background-image" style="background-image:url('static/images/backgound.jpg'); height: 185vh;background-size: cover;background-repeat: no-repeat;">
+{% extends 'bootstrap/base.html'%}
 
-        {% block navbar %}
-        {% include 'navbar.html' %}
-        {% endblock %}
+<!--Navbar block-->
+{% block navbar%}
+{% include 'navbar.html' %}
+{% endblock%}
 
-        {% block content %}
-
-        {% endblock%}
-    </body>
+{%block styles%}
+{{super()}}
+<!--Import the simple mde css and js files-->
+{{ simplemde.css}}
+{{ simplemde.js}}
+{% endblock%}
+</body>
 </html>
