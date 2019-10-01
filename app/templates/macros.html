@@ -1,11 +1,11 @@
-{% macro displayLost(lost) %}
-{% for losts in lost %}
+{% macro displayLost(losts) %}
+{% for lost in losts %}
 
 <div class="container">
     <a href="" style="color:black">
-        <h3 class='title'>{{losts.category}}</h3>
+        <h3 class='title'>{{lost.category}}</h3>
     </a>
-    <p>{{losts.address}}</p>
+    <p>{{lost.address}}</p>
 
 </div>
 
