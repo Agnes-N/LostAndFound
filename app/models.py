@@ -15,16 +15,17 @@ class User(UserMixin,db.Model):
     __tablename__ = "users"
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(255))
+    address = db.Column(db.String(255))
     username = db.Column(db.String(255), unique=True)
     email = db.Column(db.String(255), unique=True, index=True)
+
 
     pass_secure = db.Column(db.String(255))
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String(255))
 
-    # blogs = db.relationship('Blog', backref='writer', lazy="dynamic")
-    # comments = db.relationship('Comment', backref='writer', lazy='dynamic')
-
+    lost = db.relationship('Lost', backref='user', lazy="dynamic")
+    
     @property
     def password(self):
         raise AttributeError('you cannot read the password attribute')
@@ -42,3 +43,26 @@ class User(UserMixin,db.Model):
 
     def __repr__(self):
         return f'User{self.username}'
+
+class Lost(db.Model):
+    __tablename__ = "lost"
+    id = db.Column(db.Integer, primary_key = True)
+    category = db.Column(db.String(255), index=True, nullable=False)
+
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+    def save_lost(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def clear_lost(cls):
+        Lost.lost.clear()
+    
+    @classmethod
+    def get_lost(cls):
+        lost = Lost.query.filter_by(id = id).all()
+        return lost
+
+    def __repr__(self):
+        return f'Lost {self.category}' 
