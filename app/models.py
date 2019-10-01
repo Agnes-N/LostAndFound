@@ -15,7 +15,7 @@ class User(UserMixin,db.Model):
     __tablename__ = "users"
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(255))
-    address = db.Column(db.String(255))
+    
     username = db.Column(db.String(255), unique=True)
     email = db.Column(db.String(255), unique=True, index=True)
 
@@ -48,6 +48,8 @@ class Lost(db.Model):
     __tablename__ = "lost"
     id = db.Column(db.Integer, primary_key = True)
     category = db.Column(db.String(255), index=True, nullable=False)
+    address = db.Column(db.String(255))
+    name = db.Column(db.String(255))
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
@@ -61,7 +63,7 @@ class Lost(db.Model):
     
     @classmethod
     def get_lost(cls):
-        lost = Lost.query.filter_by(id = id).all()
+        lost = Lost.query.all()
         return lost
 
     def __repr__(self):

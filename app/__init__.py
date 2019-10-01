@@ -7,18 +7,18 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_uploads import IMAGES,UploadSet,configure_uploads
 from flask_simplemde import SimpleMDE
 
-db=SQLAlchemy()
-mail=Mail()
-bootstrap=Bootstrap()
-simple=SimpleMDE()
+db = SQLAlchemy()
+mail = Mail()
+bootstrap = Bootstrap()
+simple = SimpleMDE()
 
-login_manager=LoginManager()
-login_manager.session_protection='strong'
-login_manager.login_view='auth.login'
+login_manager = LoginManager()
+login_manager.session_protection = 'strong'
+login_manager.login_view = 'auth.login'
 photos=UploadSet('photos',IMAGES)
 
 def create_app(config_name):
-    app=Flask(__name__)
+    app = Flask(__name__)
 
     app.config.from_object(config_options[config_name])
     # from .auth import auth as authentication_blueprint
