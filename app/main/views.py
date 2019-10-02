@@ -43,6 +43,17 @@ def declare_lost():
 
     return render_template('declare_lost.html',form = form)
 
+@main.route('/lost/<int:id>/delete', methods = ['GET','POST'])
+# @login_required
+def delete(id):
+    current_post = Lost.query.filter_by(id = id).first()
+
+    # if current_post.user != current_user:
+    #     abort(404)
+    db.session.delete(current_post)
+    db.session.commit()
+    return redirect(url_for('.lost'))
+
 @main.route('/found', methods=['GET','POST'])
 def found():
 

@@ -10,6 +10,7 @@
             
                 <p>{{lost.location}}</p>
                 <p>{{lost.phone}}</p>
+                <a href="{{url_for('main.delete',id = lost.id)}}"><i class="fa fa-trash">Delete</i></a>
         </div>
         {% if lost.image %}
         <img src="{{url_for('static',filename=lost.image)}}" style="width: 300px; height: 200px; margin-bottom: 2%">
@@ -18,7 +19,6 @@
         {% endif %}
         <div class="col-md-6"></div>
     </div>
-
    
 </div>
 {%endfor%}
