@@ -68,4 +68,29 @@ class Lost(db.Model):
         return lost
 
     def __repr__(self):
-        return f'Lost {self.category}' 
+        return f'Lost {self.category}'
+
+class Found(db.Model):
+    __tablename__ = "found"
+    id = db.Column(db.Integer, primary_key = True)
+    category = db.Column(db.String(255))
+    address = db.Column(db.String(255))
+    name = db.Column(db.String(255))
+    user_id = db.relationship(db.Integer, db.ForeignKey(users.id))
+    image = db.Column(db.String())
+
+    def save_found(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def clear_found(cls):
+        Found.found.clear()
+    
+    @classmethod
+    def get_found(cls):
+        found = Lost.query.all()
+        return found
+
+    def __repr__(self):
+        return f'Found {self.category}'
