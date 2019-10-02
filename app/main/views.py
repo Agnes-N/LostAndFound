@@ -29,11 +29,14 @@ def declare_lost():
         name = form.name.data  
         address = form.address.data
         category = form.category.data
+        location = form.location.data
+        phone = form.phone.data
+
         image = form.image.data
         filename = photos.save(image)
-        print(filename)
+
         path = f'photos/{filename}'
-        new_lost_object = Lost(category = category,address = address, name = name,image = path)
+        new_lost_object = Lost(category = category,address = address, name = name,image = path,location = location,phone = phone)
         new_lost_object.save_lost()
 
         return redirect(url_for('main.lost'))

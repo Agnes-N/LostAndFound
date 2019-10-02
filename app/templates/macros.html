@@ -2,15 +2,24 @@
 {% for lost in losts %}
 
 <div class="container">
+    <div class="row">
+        <div class="col-md-6">
+                <p>{{lost.name}}</p>
+                <p>{{lost.address}}</p>
+                <p>{{lost.category}}</p>
+            
+                <p>{{lost.location}}</p>
+                <p>{{lost.phone}}</p>
+        </div>
+        {% if lost.image %}
+        <img src="{{url_for('static',filename=lost.image)}}" style="width: 300px; height: 200px; margin-bottom: 2%">
+        {% else %}
+        <p>No image uploaded</p>
+        {% endif %}
+        <div class="col-md-6"></div>
+    </div>
 
-    <p>{{lost.name}}</p>
-    <p>{{lost.address}}</p>
-    <p>{{lost.category}}</p>
-    {% if lost.image %}
-    <img src="{{url_for('static',filename=lost.image)}}">
-    {% else %}
-    <p>No image uploaded</p>
-    {% endif %}
+   
 </div>
 {%endfor%}
 {%endmacro%}
