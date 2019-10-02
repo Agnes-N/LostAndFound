@@ -13,16 +13,19 @@
     {% endif %}
 </div>
 {%endfor%}
+{%endmacro%}
+
+{% macro displayFound(founds) %}
 {% for found in founds %}
 <div class="container">
-    <a href="" style="color:black">
-        <h3 class='title'>{{found.category}}</h3>
-    </a>
+    <p>{{found.category}}</p>
     <p>{{found.address}}</p>
     <p>{{found.name}}</p>
-    <p>{{found.image}}</p>
-    {% if found %}
-
+    {% if found.image %}
+    <img src="{{url_for('static',filename=found.image)}}">
+    {% else %}
+    <p>No image uploaded</p>
+    {% endif %}
 </div>
 {%endfor%}
 {%endmacro%}

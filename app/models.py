@@ -25,6 +25,7 @@ class User(UserMixin,db.Model):
     profile_pic_path = db.Column(db.String(255))
 
     lost = db.relationship('Lost', backref='user', lazy="dynamic")
+    found = db.relationship('Found', backref='user', lazy="dynamic")
     
     @property
     def password(self):
@@ -51,8 +52,11 @@ class Lost(db.Model):
     address = db.Column(db.String(255))
     name = db.Column(db.String(255))
     image = db.Column(db.String(500))
+    location = db.Column(db.String(255))
+    phone = db.Column(db.Integer)
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    found = db.relationship('Found', backref='lost', lazy="dynamic")
 
     def save_lost(self):
         db.session.add(self)
@@ -76,8 +80,11 @@ class Found(db.Model):
     category = db.Column(db.String(255))
     address = db.Column(db.String(255))
     name = db.Column(db.String(255))
-    user_id = db.relationship(db.Integer, db.ForeignKey(users.id))
     image = db.Column(db.String())
+
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    lost_id = db.Column(db.Integer, db.ForeignKey('lost.id'))
+    
 
     def save_found(self):
         db.session.add(self)
@@ -89,7 +96,7 @@ class Found(db.Model):
     
     @classmethod
     def get_found(cls):
-        found = Lost.query.all()
+        found = Found.query.all()
         return found
 
     def __repr__(self):

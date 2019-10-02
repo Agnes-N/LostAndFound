@@ -12,15 +12,15 @@ class LostForm(FlaskForm):
     """
     https://stackoverflow.com/questions/50168932/how-to-upload-an-image-using-wtf-forms-quick-form
     """
-    image = FileField(validators=[FileRequired()])
+    image = FileField("Photo",validators=[FileRequired()])
     
     submit = SubmitField('submit')
 
 class FoundForm(FlaskForm):
 
-    name = StringField('Name', validators=[Required()])
+    name = StringField('Names on documents', validators=[Required()])
     category = SelectField('Category',choices=[('National_ID','National_ID'),('Passport','Passport'),('degree','degree')], validators=[Required()])
-    address = TextAreaField('Your address', validators=[Required()])
-    image = FileField('Photos)
+    address = TextAreaField('Place of Issue', validators=[Required()])
+    image = FileField('Photo', validators=[FileRequired()])
     
     submit = SubmitField('submit')

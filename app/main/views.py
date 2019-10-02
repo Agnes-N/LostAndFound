@@ -2,9 +2,9 @@ from flask import render_template,request,redirect,flash,url_for,abort
 from . import main
 # from flask_login import login_user,login_required,current_user
 from flask_login import current_user
-from ..models import User,Lost
+from ..models import User,Lost,Found
 from .. import db,photos
-from .forms import LostForm
+from .forms import LostForm,FoundForm
 from werkzeug.utils import secure_filename
 
 @main.route('/', methods=['GET','POST'])
@@ -50,17 +50,22 @@ def found():
 @main.route('/declare_found', methods=['GET','POST'])
 def declare_found():
 
-    form = FoundForm()
-    if form.validate_on_submit():
+    forme = FoundForm()
 
-        category = form.category.data
-        address = form.address.data
-        name = form.name.data
-        image = form.name.data
+    if forme.validate_on_submit():
 
-        new_found_object = Found(category = category,address = address, name = name , image = image)
+        category = forme.category.data
+        address = forme.address.data
+        name = forme.name.data
+        image = forme.image.data
+
+        filename = photos.save(image)
+        print(filename)
+        path = f'photos/{filename}'
+
+        new_found_object = Found(category = category,address = address, name = name , image = path)
         new_found_object.save_found()
 
         return redirect(url_for('main.found'))
 
-    return render_template('declare_found.html',form = form)
+    return render_template('declare_found.html',forme = forme)
