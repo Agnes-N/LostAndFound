@@ -51,9 +51,9 @@ class Lost(db.Model):
     category = db.Column(db.String(255), index=True, nullable=False)
     address = db.Column(db.String(255))
     name = db.Column(db.String(255))
-    image = db.Column(db.String(500))
     location = db.Column(db.String(255))
     phone = db.Column(db.Integer)
+    description = db.Column(db.String(255))
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     found = db.relationship('Found', backref='lost', lazy="dynamic")

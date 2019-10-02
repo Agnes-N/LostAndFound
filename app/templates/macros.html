@@ -2,22 +2,18 @@
 {% for lost in losts %}
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-6">
-                <p>{{lost.name}}</p>
-                <p>{{lost.address}}</p>
-                <p>{{lost.category}}</p>
+    <div class="card">
+        <!-- <div class="col-md-6"> -->
+                <p>Name: {{lost.name}}</p>
+                <p>Place of Issue: {{lost.address}}</p>
+                <p>Category: {{lost.category}}</p>
             
-                <p>{{lost.location}}</p>
-                <p>{{lost.phone}}</p>
-                <a href="{{url_for('main.delete',id = lost.id)}}"><i class="fa fa-trash">Delete</i></a>
-        </div>
-        {% if lost.image %}
-        <img src="{{url_for('static',filename=lost.image)}}" style="width: 300px; height: 200px; margin-bottom: 2%">
-        {% else %}
-        <p>No image uploaded</p>
-        {% endif %}
-        <div class="col-md-6"></div>
+                <p>Your Location: {{lost.location}}</p>
+                <p>Your Tel: {{lost.phone}}</p>
+                <p>Description: {{lost.description}}</p>
+                <a href="{{url_for('main.delete',id = lost.id)}}"><i class="fa fa-trash"></i>Delete</a>
+                <a href="{{url_for('main.update_lost',id = lost.id)}}"><i class="fas fa-edit"></i>Edit</a>
+        <!-- </div> -->
     </div>
    
 </div>

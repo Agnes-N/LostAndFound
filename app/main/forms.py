@@ -11,10 +11,17 @@ class LostForm(FlaskForm):
     category = SelectField('Category',choices=[('National_ID','National_ID'),('Passport','Passport'),('degree','degree')], validators=[Required()])
     location = StringField('Your Location', validators=[Required()])
     phone = IntegerField('Your Tel', validators=[Required()])
-    """
-    https://stackoverflow.com/questions/50168932/how-to-upload-an-image-using-wtf-forms-quick-form
-    """
-    image = FileField("Photo",validators=[FileRequired()])
+    description = TextAreaField('Write a brief description on what you have lost', validators=[Required()])
+    
+    submit = SubmitField('submit')
+
+class UpdateLostForm(FlaskForm):
+
+    name = StringField('Enter your name(Names on your documents)', validators=[Required()])
+    address = StringField('Place of Issue', validators=[Required()])
+    category = SelectField('Category',choices=[('National_ID','National_ID'),('Passport','Passport'),('degree','degree')], validators=[Required()])
+    location = StringField('Your Location', validators=[Required()])
+    phone = IntegerField('Your Tel', validators=[Required()])
     
     submit = SubmitField('submit')
 
@@ -22,7 +29,7 @@ class FoundForm(FlaskForm):
 
     name = StringField('Names on documents', validators=[Required()])
     category = SelectField('Category',choices=[('National_ID','National_ID'),('Passport','Passport'),('degree','degree')], validators=[Required()])
-    address = TextAreaField('Place of Issue', validators=[Required()])
+    address = StringField('Place of Issue', validators=[Required()])
     image = FileField('Photo', validators=[FileRequired()])
     
     submit = SubmitField('submit')
