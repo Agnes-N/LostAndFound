@@ -5,11 +5,12 @@ from flask_login import current_user
 from ..models import User,Lost
 from .. import db,photos
 from .forms import LostForm
+from werkzeug.utils import secure_filename
 
 @main.route('/', methods=['GET','POST'])
 def index():
 
-    title = 'Welcome to Lost and Found website'
+    title = 'Lost and Found'
     return render_template('index.html', title = title)
 
 @main.route('/lost', methods=['GET','POST'])
@@ -25,11 +26,14 @@ def declare_lost():
     form = LostForm()
     if form.validate_on_submit():
 
-        category = form.category.data
+        name = form.name.data  
         address = form.address.data
-        name = form.name.data
-
-        new_lost_object = Lost(category = category,address = address, name = name)
+        category = form.category.data
+        image = form.image.data
+        filename = photos.save(image)
+        print(filename)
+        path = f'photos/{filename}'
+        new_lost_object = Lost(category = category,address = address, name = name,image = path)
         new_lost_object.save_lost()
 
         return redirect(url_for('main.lost'))
