@@ -55,7 +55,7 @@ def delete(id):
     db.session.commit()
     return redirect(url_for('.lost'))
 
-@main.route('/update/<int:id>',methods= ['GET','POST'])
+@main.route('/lost/<int:id>/update',methods= ['GET','POST'])
 # @login_required
 def update_lost(id):
 
@@ -67,17 +67,16 @@ def update_lost(id):
 
     if formi.validate_on_submit():
 
-        name = formi.name.data  
-        address = formi.address.data
-        category = formi.category.data
-        location = formi.location.data
-        phone = formi.phone.data
-        description = formi.description.data
+        losts.name = formi.name.data  
+        losts.address = formi.address.data
+        losts.category = formi.category.data
+        losts.location = formi.location.data
+        losts.phone = formi.phone.data
 
         db.session.add(losts)
         db.session.commit()
 
-        return redirect(url_for('main.index'))
+        return redirect(url_for('main.lost'))
     return render_template('update_lost.html',formi = formi)
 
 @main.route('/found', methods=['GET','POST'])
@@ -131,6 +130,7 @@ def delete_found(id):
 def update_found(id):
 
     founds = Found.query.filter_by(id = id).first()
+    print(founds.id)
     # if blogs is None:
     #     abort(404)
 
@@ -138,23 +138,24 @@ def update_found(id):
 
     if formu.validate_on_submit():
 
-        category = formu.category.data
-        address = formu.address.data
-        name = formu.name.data
-        f_name = formu.f_name.data
-        location = formu.location.data
-        phone = formu.phone.data
-        description = formu.description.data
-
-        image = formu.image.data
+        image= formu.image.data
 
         filename = photos.save(image)
-        print(filename)
-        path = f'photos/{filename}'
 
-        db.session.add(founds)
-        print(founds)
+        path = f'photos/{filename}'
+        
+        Found.query.filter_by(id = id).update({
+            "category": formu.category.data,
+            "address": formu.address.data,
+            "name": formu.name.data,
+            "f_name": formu.f_name.data,
+            "location": formu.location.data,
+            "phone": formu.phone.data,
+            "description": formu.description.data,
+            "image": path
+            })
+        
         db.session.commit()
 
-        return redirect(url_for('main.found',category = category,address = address, name = name , image = path, f_name = f_name, location= location, description = description,phone = phone))
+        return redirect(url_for('main.found'))
     return render_template('update_found.html',formu = formu)
