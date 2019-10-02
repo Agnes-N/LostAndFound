@@ -4,7 +4,7 @@ from . import main
 from flask_login import current_user
 from ..models import User,Lost,Found
 from .. import db,photos
-from .forms import LostForm,FoundForm,UpdateLostForm
+from .forms import LostForm,FoundForm,UpdateLostForm,UpdateFoundForm
 from werkzeug.utils import secure_filename
 
 @main.route('/', methods=['GET','POST'])
@@ -97,15 +97,64 @@ def declare_found():
         category = forme.category.data
         address = forme.address.data
         name = forme.name.data
+        f_name = forme.f_name.data
+        location = forme.location.data
+        phone = forme.phone.data
+        description = forme.description.data
+
         image = forme.image.data
 
         filename = photos.save(image)
         print(filename)
         path = f'photos/{filename}'
 
-        new_found_object = Found(category = category,address = address, name = name , image = path)
+        new_found_object = Found(category = category,address = address, name = name , image = path, f_name = f_name, location= location, description = description,phone = phone)
         new_found_object.save_found()
 
         return redirect(url_for('main.found'))
 
     return render_template('declare_found.html',forme = forme)
+
+@main.route('/found/<int:id>/delete_found', methods = ['GET','POST'])
+# @login_required
+def delete_found(id):
+    current_post = Found.query.filter_by(id = id).first()
+
+    # if current_post.user != current_user:
+    #     abort(404)
+    db.session.delete(current_post)
+    db.session.commit()
+    return redirect(url_for('.found'))
+
+@main.route('/found/<int:id>',methods= ['GET','POST'])
+# @login_required
+def update_found(id):
+
+    founds = Found.query.filter_by(id = id).first()
+    # if blogs is None:
+    #     abort(404)
+
+    formu = UpdateFoundForm()
+
+    if formu.validate_on_submit():
+
+        category = formu.category.data
+        address = formu.address.data
+        name = formu.name.data
+        f_name = formu.f_name.data
+        location = formu.location.data
+        phone = formu.phone.data
+        description = formu.description.data
+
+        image = formu.image.data
+
+        filename = photos.save(image)
+        print(filename)
+        path = f'photos/{filename}'
+
+        db.session.add(founds)
+        print(founds)
+        db.session.commit()
+
+        return redirect(url_for('main.found',category = category,address = address, name = name , image = path, f_name = f_name, location= location, description = description,phone = phone))
+    return render_template('update_found.html',formu = formu)

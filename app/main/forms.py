@@ -28,8 +28,25 @@ class UpdateLostForm(FlaskForm):
 class FoundForm(FlaskForm):
 
     name = StringField('Names on documents', validators=[Required()])
-    category = SelectField('Category',choices=[('National_ID','National_ID'),('Passport','Passport'),('degree','degree')], validators=[Required()])
+    f_name = StringField('Names of Discoverer', validators=[Required()])
     address = StringField('Place of Issue', validators=[Required()])
+    category = SelectField('Category',choices=[('National_ID','National_ID'),('Passport','Passport'),('degree','degree')], validators=[Required()])
+    location = StringField('Discoverer Location', validators=[Required()])
+    phone = IntegerField('Discoverer Tel', validators=[Required()])
+    description = TextAreaField('Write a brief description', validators=[Required()])
+    image = FileField('Photo', validators=[FileRequired()])
+    
+    submit = SubmitField('submit')
+
+class UpdateFoundForm(FlaskForm):
+
+    name = StringField('Names on documents', validators=[Required()])
+    f_name = StringField('Names of Discoverer', validators=[Required()])
+    address = StringField('Place of Issue', validators=[Required()])
+    category = SelectField('Category',choices=[('National_ID','National_ID'),('Passport','Passport'),('degree','degree')], validators=[Required()])
+    location = StringField('Discoverer Location', validators=[Required()])
+    phone = IntegerField('Discoverer Tel', validators=[Required()])
+    description = TextAreaField('Write a brief description', validators=[Required()])
     image = FileField('Photo', validators=[FileRequired()])
     
     submit = SubmitField('submit')

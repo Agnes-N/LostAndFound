@@ -1,7 +1,7 @@
 {% macro displayLost(losts) %}
 {% for lost in losts %}
 
-<div class="container">
+<div class="container" style="margin-bottom: 3%">
     <div class="card">
         <!-- <div class="col-md-6"> -->
                 <p>Name: {{lost.name}}</p>
@@ -22,15 +22,22 @@
 
 {% macro displayFound(founds) %}
 {% for found in founds %}
-<div class="container">
-    <p>{{found.category}}</p>
-    <p>{{found.address}}</p>
-    <p>{{found.name}}</p>
+<div class="container" style="margin-bottom: 3%">
+    <p>Category: {{found.category}}</p>
+    <p>Place of Issue: {{found.address}}</p>
+    <p>Names on documents: {{found.name}}</p>
+    <p>Names of Discoverer: {{found.f_name}}</p>
+    <p>Discoverer Location: {{found.location}}</p>
+    <p>Discoverer Tel: {{found.phone}}</p>
+    <p>Description: {{found.description}}</p>
     {% if found.image %}
     <img src="{{url_for('static',filename=found.image)}}">
     {% else %}
     <p>No image uploaded</p>
     {% endif %}
+
+    <a href="{{url_for('main.delete_found',id = found.id)}}"><i class="fa fa-trash"></i>Delete</a>
+    <a href="{{url_for('main.update_found',id = found.id)}}"><i class="fas fa-edit"></i>Edit</a>
 </div>
 {%endfor%}
 {%endmacro%}

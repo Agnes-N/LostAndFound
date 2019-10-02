@@ -75,12 +75,16 @@ class Lost(db.Model):
         return f'Lost {self.category}'
 
 class Found(db.Model):
-    __tablename__ = "found"
+    __tablename__ = "fouid = db.Column(db.Integer, primary_key = True)nd"
     id = db.Column(db.Integer, primary_key = True)
-    category = db.Column(db.String(255))
+    category = db.Column(db.String(255), index=True, nullable=False)
     address = db.Column(db.String(255))
     name = db.Column(db.String(255))
+    f_name = db.Column(db.String(255))
     image = db.Column(db.String())
+    location = db.Column(db.String(255))
+    phone = db.Column(db.Integer)
+    description = db.Column(db.String(255))
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     lost_id = db.Column(db.Integer, db.ForeignKey('lost.id'))
