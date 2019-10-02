@@ -8,6 +8,17 @@
     <p>{{lost.address}}</p>
 
 </div>
+{%endfor%}
+{% for found in founds %}
+<div class="container">
+    <a href="" style="color:black">
+        <h3 class='title'>{{found.category}}</h3>
+    </a>
+    <p>{{found.address}}</p>
+    <p>{{found.name}}</p>
+    <p>{{found.image}}</p>
+    {% if found %}
 
+</div>
 {%endfor%}
 {%endmacro%}

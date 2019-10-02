@@ -35,3 +35,28 @@ def declare_lost():
         return redirect(url_for('main.lost'))
 
     return render_template('declare_lost.html',form = form)
+
+@main.route('/found', methods=['GET','POST'])
+def found():
+
+    founds = Found.query.all()
+
+    return render_template('found.html',founds = founds)
+
+@main.route('/declare_found', methods=['GET','POST'])
+def declare_found():
+
+    form = FoundForm()
+    if form.validate_on_submit():
+
+        category = form.category.data
+        address = form.address.data
+        name = form.name.data
+        image = form.name.data
+
+        new_found_object = Found(category = category,address = address, name = name , image = image)
+        new_found_object.save_found()
+
+        return redirect(url_for('main.found'))
+
+    return render_template('declare_found.html',form = form)
