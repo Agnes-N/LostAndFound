@@ -1,8 +1,13 @@
 from flask_wtf import  FlaskForm
 from wtforms import StringField,SelectField,TextAreaField,SubmitField,FileField,IntegerField
-from wtforms.validators import Required
+from wtforms.validators import Required,DataRequired
+
+# ''''
+# https://stackoverflow.com/questions/49633323/wtforms-date-validation
+# ''''
 from flask_wtf.file import FileField, FileRequired
-# from ..models import Lost
+from datetime import date
+from wtforms.fields.html5 import DateField,DateTimeField
 
 class LostForm(FlaskForm):
 
@@ -12,6 +17,7 @@ class LostForm(FlaskForm):
     location = StringField('Your Location', validators=[Required()])
     phone = IntegerField('Your Tel', validators=[Required()])
     description = TextAreaField('Write a brief description on what you have lost', validators=[Required()])
+    posted_date = DateField("Posted Date", validators=[DataRequired(message="You need to enter the posted date.")], format='%m/%d/%Y')
     
     submit = SubmitField('submit')
 
