@@ -8,7 +8,7 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="{{url_for('main.index')}}" style="color:white; font-weight:bolder;">
-            <span class="glyphicon glyphicon-home"></span>HOME</a>
+            <span class="glyphicon glyphicon-home"></span>  HOME</a>
            
           <a class="navbar-brand" href="{{url_for('main.lost')}}" style="color:white; font-weight:bolder;"> 
              <span></span>LOST</a>
@@ -21,6 +21,24 @@
             
           <a class="navbar-brand" href="{{url_for('main.declare_found')}}" style="color:white; font-weight:bolder;"> 
                   <span></span>POST FOUND</a>
-      </div>
-  </div>
+     
+
+{% block content %}
+
+        <div class="coj" style="margin-top:5%">
+               
+                {% if current_user.is_authenticated %}
+                <h3 class="text" style="margin-right:6%;position: right;color: white;"><a
+                                href="{{url_for('auth.logout')}}"><strong>Log Out</strong></a></h3>
+                {% else %}
+                <h3 class="text" style="margin-left:6%;color: white;font-size: 15px"><a
+                                href="{{url_for('auth.login')}}"><strong>ADMIN</strong></a></h3>
+                {%endif%}
+        </div>
+</div>
+
+<p>hello</p>
+{% endblock %}  
+</div>
+</div>
 </div>
