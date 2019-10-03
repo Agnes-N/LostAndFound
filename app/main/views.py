@@ -26,6 +26,7 @@ def lost():
 def declare_lost():
 
     form = LostForm()
+   
     if form.validate_on_submit():
 
         name = form.name.data  
@@ -73,6 +74,7 @@ def update_lost(id):
         losts.category = formi.category.data
         losts.location = formi.location.data
         losts.phone = formi.phone.data
+        posted_date = formi.posted_date.data
 
         db.session.add(losts)
         db.session.commit()
@@ -102,6 +104,7 @@ def declare_found():
         location = forme.location.data
         phone = forme.phone.data
         description = forme.description.data
+        posted_date = forme.posted_date.data
 
         image = forme.image.data
 
@@ -109,7 +112,7 @@ def declare_found():
         print(filename)
         path = f'photos/{filename}'
 
-        new_found_object = Found(category = category,address = address, name = name , image = path, f_name = f_name, location= location, description = description,phone = phone)
+        new_found_object = Found(category = category,address = address, name = name , image = path, f_name = f_name, location= location, description = description,phone = phone,posted_date = posted_date)
         new_found_object.save_found()
 
         return redirect(url_for('main.found'))
@@ -154,7 +157,8 @@ def update_found(id):
             "location": formu.location.data,
             "phone": formu.phone.data,
             "description": formu.description.data,
-            "image": path
+            "image": path,
+            "posted_date": formu.posted_date.data,
             })
         
         db.session.commit()
