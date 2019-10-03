@@ -31,6 +31,7 @@
             <p>Discoverer Location: {{found.location}}</p>
             <p>Discoverer Tel: {{found.phone}}</p>
             <p>Description: {{found.description}}</p>
+            <p>Posted Date: {{found.posted_date}}</p>
             <div><a href="{{url_for('main.delete_found',id = found.id)}}"><i class="fa fa-trash"></i>Delete</a>
                 <a href="{{url_for('main.update_found',id = found.id)}}"><i class="fas fa-edit"></i>Edit</a></div>
         </div>

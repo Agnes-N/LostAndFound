@@ -2,23 +2,26 @@
 <header>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
+    
 </header>
-<body class="background-image" style="background-image:url('static/images/backgound.jpg'); height: 185vh;background-size: cover;background-repeat: no-repeat;">
+<body class="background-image" style="background-image:url('../static/images/backgound.jpg'); height: 185vh;background-size: cover;background-repeat: no-repeat;"></body>
 {% extends 'bootstrap/base.html'%}
 
 <!--Navbar block-->
-{% block navbar%}
-{% include 'navbar.html' %}
-{% endblock%}
-
-{% block content %}
-{% endblock %}
-
 {%block styles%}
 {{super()}}
 <!--Import the simple mde css and js files-->
 {{ simplemde.css}}
 {{ simplemde.js}}
 {% endblock%}
-</body>
+
+{% block content %}
+{% block navbar%}
+{% include 'navbar.html' %}
+{% endblock%}
+{% endblock %}
+
+
+
 </html>
+
