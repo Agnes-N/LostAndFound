@@ -1,11 +1,12 @@
 from flask import render_template,request,redirect,flash,url_for,abort
 from . import main
-# from flask_login import login_user,login_required,current_user
+from flask_login import login_user,login_required,current_user
 from flask_login import current_user
 from ..models import User,Lost,Found
 from .. import db,photos
 from .forms import LostForm,FoundForm,UpdateLostForm,UpdateFoundForm
 from werkzeug.utils import secure_filename
+from datetime import date
 
 @main.route('/', methods=['GET','POST'])
 def index():
@@ -21,6 +22,7 @@ def lost():
     return render_template('lost.html',losts = losts)
 
 @main.route('/declare_lost', methods=['GET','POST'])
+@login_required
 def declare_lost():
 
     form = LostForm()
@@ -32,12 +34,11 @@ def declare_lost():
         location = form.location.data
         phone = form.phone.data
         description = form.description.data
+        posted_date = form.posted_date.data
 
-        # image = form.image.data
-        # filename = photos.save(image)
+        print(posted_date)
 
-        # path = f'photos/{filename}'
-        new_lost_object = Lost(category = category,address = address, name = name,location = location,phone = phone,description = description)
+        new_lost_object = Lost(category = category,address = address, name = name,location = location,phone = phone,description = description,posted_date = posted_date)
         new_lost_object.save_lost()
 
         return redirect(url_for('main.lost'))
@@ -45,23 +46,23 @@ def declare_lost():
     return render_template('declare_lost.html',form = form)
 
 @main.route('/lost/<int:id>/delete', methods = ['GET','POST'])
-# @login_required
+@login_required
 def delete(id):
     current_post = Lost.query.filter_by(id = id).first()
 
-    # if current_post.user != current_user:
-    #     abort(404)
+    if current_post.user != current_user:
+        abort(404)
     db.session.delete(current_post)
     db.session.commit()
     return redirect(url_for('.lost'))
 
 @main.route('/lost/<int:id>/update',methods= ['GET','POST'])
-# @login_required
+@login_required
 def update_lost(id):
 
     losts = Lost.query.filter_by(id = id).first()
-    # if blogs is None:
-    #     abort(404)
+    if losts is None:
+        abort(404)
 
     formi = UpdateLostForm()
 
@@ -87,6 +88,7 @@ def found():
     return render_template('found.html',founds = founds)
 
 @main.route('/declare_found', methods=['GET','POST'])
+@login_required
 def declare_found():
 
     forme = FoundForm()
@@ -115,24 +117,24 @@ def declare_found():
     return render_template('declare_found.html',forme = forme)
 
 @main.route('/found/<int:id>/delete_found', methods = ['GET','POST'])
-# @login_required
+@login_required
 def delete_found(id):
     current_post = Found.query.filter_by(id = id).first()
 
-    # if current_post.user != current_user:
-    #     abort(404)
+    if current_post.user != current_user:
+        abort(404)
     db.session.delete(current_post)
     db.session.commit()
     return redirect(url_for('.found'))
 
 @main.route('/found/<int:id>',methods= ['GET','POST'])
-# @login_required
+@login_required
 def update_found(id):
 
     founds = Found.query.filter_by(id = id).first()
     print(founds.id)
-    # if blogs is None:
-    #     abort(404)
+    if founds is None:
+        abort(404)
 
     formu = UpdateFoundForm()
 

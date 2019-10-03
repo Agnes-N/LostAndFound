@@ -54,6 +54,7 @@ class Lost(db.Model):
     location = db.Column(db.String(255))
     phone = db.Column(db.Integer)
     description = db.Column(db.String(255))
+    posted_date = db.Column(db.DateTime, nullable=True)
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     found = db.relationship('Found', backref='lost', lazy="dynamic")
@@ -85,6 +86,7 @@ class Found(db.Model):
     location = db.Column(db.String(255))
     phone = db.Column(db.Integer)
     description = db.Column(db.String(255))
+    posted_date = db.Column(db.DateTime, nullable=True)
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     lost_id = db.Column(db.Integer, db.ForeignKey('lost.id'))
