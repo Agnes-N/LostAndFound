@@ -18,7 +18,7 @@ class Config:
     # simple mde  configurations
     SIMPLEMDE_JS_IIFE = True
     SIMPLEMDE_USE_CDN = True
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://wecode:gasa1@localhost/lostandfound'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://wecode:1234@localhost/lostandfound'
 
 
 class ProdConfig(Config):
@@ -26,7 +26,7 @@ class ProdConfig(Config):
 
 class TestConfig(Config):
 
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://wecode:gasa1@localhost/lostandfound'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://wecode:1234@localhost/lostandfound'
 
 class DevConfig(Config):
 
