@@ -2,13 +2,18 @@
 {% import "bootstrap/wtf.html" as wtf %}
 {% block content %}
 <div class="container" id="particles-js">
-    <div class="row">
-        <div class="col-md-2"> </div>
-        <div class="col-md-8" id="postform">
-            <h2 class="text-center"> Declaration</h2>
-            {{wtf.quick_form(forme)}}
+    <div class="card" style="background-color: bisque; box-shadow: 5px 10px none;">
+        <div class="row">
+            <h2 class="text-center" style="text-shadow: 2px 2px 4px #000000;">Post Found</h2>
+            <div class="col-md-2"> </div>
+            
+            <div class="col-md-8" id="postform">
+                <h2 class="text" style="text-shadow: 2px 2px 4px #000000; margin-top: 8%"> </h2>
+                {{wtf.quick_form(forme)}}
+                
+            </div>
+            <div class="col-md-2"></div>
         </div>
-        <div class="col-md-2"></div>
     </div>
 </div>
 {% endblock %}

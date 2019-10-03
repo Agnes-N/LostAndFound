@@ -1,23 +1,17 @@
 {% macro displayLost(losts) %}
 {% for lost in losts %}
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">
-                <p>{{lost.name}}</p>
-                <p>{{lost.address}}</p>
-                <p>{{lost.category}}</p>
+<div class="container" style="margin-bottom: 3%">
+    <div class="card">
+                <p>Name: {{lost.name}}</p>
+                <p>Place of Issue: {{lost.address}}</p>
+                <p>Category: {{lost.category}}</p>
             
-                <p>{{lost.location}}</p>
-                <p>{{lost.phone}}</p>
-                <a href="{{url_for('main.delete',id = lost.id)}}"><i class="fa fa-trash">Delete</i></a>
-        </div>
-        {% if lost.image %}
-        <img src="{{url_for('static',filename=lost.image)}}" style="width: 300px; height: 200px; margin-bottom: 2%">
-        {% else %}
-        <p>No image uploaded</p>
-        {% endif %}
-        <div class="col-md-6"></div>
+                <p>Your Location: {{lost.location}}</p>
+                <p>Your Tel: {{lost.phone}}</p>
+                <p>Description: {{lost.description}}</p>
+                <a href="{{url_for('main.delete',id = lost.id)}}"><i class="fa fa-trash"></i>Delete</a>
+                <a href="{{url_for('main.update_lost',id = lost.id)}}"><i class="fas fa-edit"></i>Edit</a>
     </div>
    
 </div>
@@ -26,15 +20,28 @@
 
 {% macro displayFound(founds) %}
 {% for found in founds %}
-<div class="container">
-    <p>{{found.category}}</p>
-    <p>{{found.address}}</p>
-    <p>{{found.name}}</p>
-    {% if found.image %}
-    <img src="{{url_for('static',filename=found.image)}}">
-    {% else %}
-    <p>No image uploaded</p>
-    {% endif %}
+<div class="container" style="margin-bottom: 3%">
+    <div class="row">
+        <div class="col-md-5">
+            <p>Category: {{found.category}}</p>
+            <p>Place of Issue: {{found.address}}</p>
+            <p>Names on documents: {{found.name}}</p>
+            <p>Names of Discoverer: {{found.f_name}}</p>
+            <p>Discoverer Location: {{found.location}}</p>
+            <p>Discoverer Tel: {{found.phone}}</p>
+            <p>Description: {{found.description}}</p>
+            <div><a href="{{url_for('main.delete_found',id = found.id)}}"><i class="fa fa-trash"></i>Delete</a>
+                <a href="{{url_for('main.update_found',id = found.id)}}"><i class="fas fa-edit"></i>Edit</a></div>
+        </div>
+   
+    <div class="col-md-7">
+        {% if found.image %}
+        <img src="{{url_for('static',filename=found.image)}}" width="300" height="200">
+        {% endif %}
+    </div>
+</div>  
+
+    
 </div>
 {%endfor%}
 {%endmacro%}
