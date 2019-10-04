@@ -1,8 +1,8 @@
 """Initial Migration
 
-Revision ID: aefeb354e2bd
+Revision ID: e6577a0e26ea
 Revises: 
-Create Date: 2019-10-03 18:10:09.175218
+Create Date: 2019-10-04 11:31:03.287232
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'aefeb354e2bd'
+revision = 'e6577a0e26ea'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -38,7 +38,7 @@ def upgrade():
     sa.Column('location', sa.String(length=255), nullable=True),
     sa.Column('phone', sa.Integer(), nullable=True),
     sa.Column('description', sa.String(length=255), nullable=True),
-    sa.Column('posted_date', sa.DateTime(), nullable=True),
+    sa.Column('posted_date', sa.Date(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
@@ -54,7 +54,7 @@ def upgrade():
     sa.Column('location', sa.String(length=255), nullable=True),
     sa.Column('phone', sa.Integer(), nullable=True),
     sa.Column('description', sa.String(length=255), nullable=True),
-    sa.Column('posted_date', sa.DateTime(), nullable=True),
+    sa.Column('posted_date', sa.Date(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('lost_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['lost_id'], ['lost.id'], ),

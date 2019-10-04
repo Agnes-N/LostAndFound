@@ -17,7 +17,7 @@ class LostForm(FlaskForm):
     location = StringField('Your Location', validators=[Required()])
     phone = IntegerField('Your Tel', validators=[Required()])
     description = TextAreaField('Write a brief description on what you have lost', validators=[Required()])
-    posted_date = DateField("Posted Date", validators=[DataRequired(message="You need to enter the posted date.")], format='%m/%d/%Y')
+    posted_date = DateField("Posted Date", validators=[DataRequired(message="You need to enter the posted date.")], format='%Y-%m-%d')
     
     submit = SubmitField('submit')
 
@@ -28,6 +28,7 @@ class UpdateLostForm(FlaskForm):
     category = SelectField('Category',choices=[('National_ID','National_ID'),('Passport','Passport'),('degree','degree')], validators=[Required()])
     location = StringField('Your Location', validators=[Required()])
     phone = IntegerField('Your Tel', validators=[Required()])
+    posted_date = DateField("Posted Date", validators=[DataRequired(message="You need to enter the posted date.")], format='%Y-%m-%d')
     
     submit = SubmitField('submit')
 
@@ -41,6 +42,7 @@ class FoundForm(FlaskForm):
     phone = IntegerField('Discoverer Tel', validators=[Required()])
     description = TextAreaField('Write a brief description', validators=[Required()])
     image = FileField('Photo', validators=[FileRequired()])
+    posted_date = DateField("Posted Date", validators=[DataRequired(message="You need to enter the posted date.")], format='%Y-%m-%d')
     
     submit = SubmitField('submit')
 
@@ -54,5 +56,6 @@ class UpdateFoundForm(FlaskForm):
     phone = IntegerField('Discoverer Tel', validators=[Required()])
     description = TextAreaField('Write a brief description', validators=[Required()])
     image = FileField('Photo', validators=[FileRequired()])
+    posted_date = DateField("Posted Date", validators=[DataRequired(message="You need to enter the posted date.")], format='%Y-%m-%d')
     
     submit = SubmitField('submit')
