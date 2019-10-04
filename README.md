@@ -1,2 +1,4 @@
 ## Authors
-1. 
+
+1. Agnes
+2. Gentille
