@@ -2,26 +2,20 @@
 {% import 'macros.html' as macro %}
 {% import 'bootstrap/wtf.html' as wtf%}
 
-
 {% block content %}
-
-<div class="container" id="particles-js" style="margin-top:3%;font-family: 'Bitter', serif;font-size: 130%">
-
+<div class="container" id="particles-js" style="margin-top:1%;font-family: 'Bitter', serif;font-size: 130%">
     <div class="card-text">
-            <h3>On this page, you will find on all documents that have been found.</h3>
+        <h3 style="font-family: 'Libre Baskerville'; margin-bottom:3%;">On this page, you will find on all the documents that have been
+            found.</h3>
     </div>
-
-    <div class="tab-content" style="margin-top: 8%">
-            <div class="container tab-pane active" id="all"> <br>
-                {{macro.displayFound(founds) }} 
-            </div>
-           
-<div class="text-center">
-    <a class="btn btn-primary" href="{{url_for('main.declare_found')}}" style="color:black; font-weight:bolder; margin-top: 3%"> 
-        <span></span>POST FOUND</a>
-</div>
+    <div class="tab-content" style="margin-top: 1%">
+        <div class="container tab-pane active" id="all"> <br>
+            {{macro.displayFound(founds) }}
+        </div>
+        <div class="text-center">
+            <a class="btn btn-primary" href="{{url_for('main.declare_found')}}" style="color:black; font-weight:bolder; margin-top: 3%">
+                <span></span>POST FOUND</a>
+        </div>
     </div>
-
 </div>
-
 {% endblock%}
