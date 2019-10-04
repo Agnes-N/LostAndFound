@@ -14,8 +14,11 @@
 
 <body >
 
-        {% extends 'base.html' %}
+        
         {% block content %}
+        {% block navbar%}
+        {% include 'navbar.html' %}
+        {% endblock%}
       
         <!-- <h1>Welcome To Tera Website!!</h1> -->
         <div id="myCarousel" class="carousel slide" data-ride="carousel" >
