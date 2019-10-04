@@ -52,8 +52,6 @@ def delete(id):
 
     current_post = Lost.query.filter_by(id = id).first()
 
-    if current_post.user != current_user:
-        abort(404)
     db.session.delete(current_post)
     db.session.commit()
     return redirect(url_for('.lost'))
@@ -126,8 +124,6 @@ def declare_found():
 def delete_found(id):
     current_post = Found.query.filter_by(id = id).first()
 
-    if current_post.user != current_user:
-        abort(404)
     db.session.delete(current_post)
     db.session.commit()
     return redirect(url_for('.found'))
