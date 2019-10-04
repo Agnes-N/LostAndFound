@@ -1,28 +1,73 @@
-{% extends 'base.html' %}
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
 
-<div class="container">
-   
-    <h1 class="text-center"> {{ title }} </h1>
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <title>Document</title>
+</head>
 
-    <div class="row">
-            <div class="col-md-6" style="margin-top:8%">
-                    <blockquote class="text-center text-lg">
-                          
-                    </blockquote>
-            </div>
+<body >
 
-            <div class="col-md-6" style="margin-top:5%">
-                    <img src="https://images-na.ssl-images-amazon.com/images/I/71cXO+fpC0L._RI_.jpg" width="300"height="200">
-            {% if current_user.is_authenticated %}
-            <h3 class="text" style="margin-left:6%"><a href="{{url_for('auth.logout')}}"><strong>Log Out</strong></a></h3>
-            {% else %}
-            <h3 class="text" style="margin-left:6%"><a href="{{url_for('auth.login')}}"><strong>Sign in</strong></a></h3>
-            {%endif%}                                   
-            </div>
-    </div>
-   
-    <p>hello</p>
-</div>
-<div></div>
-{% endblock %}
+        
+        {% block content %}
+        {% block navbar%}
+        {% include 'navbar.html' %}
+        {% endblock%}
+      
+        <!-- <h1>Welcome To Tera Website!!</h1> -->
+        <div id="myCarousel" class="carousel slide" data-ride="carousel" >
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ol>
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" >
+                        <div class="item active">
+                                <img src="static/images/g1.png" alt="Los Angeles"style="width:1900px;height: 1000px" >
+                                <div class="top-center" style="position: absolute;color:white;font-size: 50px; top:300px;right:10px; transform:translate(-50%,-50%);">
+                                        <i><p style="font-family: 'Oswald', sans-serif;">This website can help you to take back your </p></i>
+                                        <i><p style="font-family: 'Oswald', sans-serif;">lost Document  if founded by someone!!</p></i> <img src="https://www.reynolds.k12.or.us/sites/default/files/styles/gallery500/public/imageattachments/troutdale/page/18761/lost_and_found.png?itok=wlvZpD0k" style="border-radius: 40%; margin-top:80px; margin-left:30%;"></div>
+                                       
+                                
+                        </div>
+                        
+                        <div class="item">
+                                <img src="static/images/gg.jpeg" alt="Chicago" style="width:1900px;height: 1000px">
+                                <div class="top-center" style="position: absolute;color:white;font-size: 50px; top:200px;right:2px; transform:translate(-20%,-20%);">
+                                        <i><p style="font-family: 'Oswald', sans-serif;">when  your Document is lost, </p></i>
+                                        <i><p style="font-family: 'Oswald', sans-serif;">Click  Post Lost to fill the form and  post the anouncement!!</p></i> <img src="https://www.reynolds.k12.or.us/sites/default/files/styles/gallery500/public/imageattachments/troutdale/page/18761/lost_and_found.png?itok=wlvZpD0k" style="border-radius: 40%; padding-top:80px; margin-left:30%;"></div>
+                                
+                                
+                                
+                        </div>
+                        <div class="item">
+                                <img src="static/images/po.jpg" alt="New york" style="width:1900px;height: 1000px">
+                                <div class="top-center" style="position: absolute;color:white;font-size: 50px; top:290px;right:20px; transform:translate(-45%,-45%);">
+                                        <i><p style="font-family: 'Oswald', sans-serif;">Once you find any Document losted by someone, </p></i>
+                                        <i><p style="font-family: 'Oswald', sans-serif;">Click  Post Found to fill the form and  post the anouncement!!</p></i> <img src="https://www.reynolds.k12.or.us/sites/default/files/styles/gallery500/public/imageattachments/troutdale/page/18761/lost_and_found.png?itok=wlvZpD0k" style="border-radius: 40%; margin-top:80px; margin-left:30%;"></div>
+                        </div>
+                </div>
+                <!-- Left and right controls -->
+                <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                        <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                        <span class="sr-only">Next</span>
+                </a>
+        </div>
+        <div></div>
+        
+        {% endblock %}
+</body>
+
+</html>
