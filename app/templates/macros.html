@@ -1,49 +1,47 @@
 {% macro displayLost(losts) %}
-{% for lost in losts %}
 
-<div class="container" style="margin-bottom: 3%">
-    <div class="card">
-                <p>Name: {{lost.name}}</p>
-                <p>Place of Issue: {{lost.address}}</p>
-                <p>Category: {{lost.category}}</p>
-            
-                <p>Your Location: {{lost.location}}</p>
-                <p>Your Tel: {{lost.phone}}</p>
-                <p>Description: {{lost.description}}</p>
-                <p>Posted Date: {{lost.posted_date}}</p>
-                <a href="{{url_for('main.delete',id = lost.id)}}"><i class="fa fa-trash"></i>Delete</a>
-                <a href="{{url_for('main.update_lost',id = lost.id)}}"><i class="fas fa-edit"></i>Edit</a>
-    </div>
-   
+<div class="row" style="margin-bottom: 3%">
+     {% for lost in losts %}
+<div class="col-md-4" style="margin-top: 3%">
+<div class="me" style="font-family: 'Libre Baskerville', serif; font-size: 20px">
+    <p>Names on document: {{lost.name}}</p>
+    <p>Place of Issue: {{lost.address}}</p>
+    <p>Type of the Document: {{lost.category}}</p>
+    <p>Your Location: {{lost.location}}</p>
+    <p>Your Tel: {{lost.phone}}</p>
+    <p>Description: {{lost.description}}</p>
+    <p>Posted Date: {{lost.posted_date}}</p>
+    <a href="{{url_for('main.delete',id = lost.id)}}"><i class="fa fa-trash"></i>Delete</a>
+    <a href="{{url_for('main.update_lost',id = lost.id)}}"><i class="fas fa-edit"></i>Edit</a>
+</div>  
 </div>
 {%endfor%}
+</div>
 {%endmacro%}
 
 {% macro displayFound(founds) %}
-{% for found in founds %}
-<div class="container" style="margin-bottom: 3%">
-    <div class="row">
-        <div class="col-md-5">
-            <p>Category: {{found.category}}</p>
-            <p>Place of Issue: {{found.address}}</p>
-            <p>Names on documents: {{found.name}}</p>
-            <p>Names of Discoverer: {{found.f_name}}</p>
-            <p>Discoverer Location: {{found.location}}</p>
-            <p>Discoverer Tel: {{found.phone}}</p>
-            <p>Description: {{found.description}}</p>
-            <p>Posted Date: {{found.posted_date}}</p>
-            <div><a href="{{url_for('main.delete_found',id = found.id)}}"><i class="fa fa-trash"></i>Delete</a>
-                <a href="{{url_for('main.update_found',id = found.id)}}"><i class="fas fa-edit"></i>Edit</a></div>
-        </div>
-   
-    <div class="col-md-7">
-        {% if found.image %}
-        <img src="{{url_for('static',filename=found.image)}}" width="300" height="200">
-        {% endif %}
-    </div>
-</div>  
 
-    
+<div class="row" >
+    {% for found in founds %}
+<div class="col-md-4">
+<div class="me" style="font-family: 'Libre Baskerville', serif; font-size: 20px">
+    <p>Type of the Document: {{found.category}}</p>
+    <p>Place of Issue: {{found.address}}</p>
+    <p>Names on document: {{found.name}}</p>
+    <p>Names of Discoverer: {{found.f_name}}</p>
+    <p>Discoverer Location: {{found.location}}</p>
+    <p>Discoverer Tel: {{found.phone}}</p>
+    <p>Description: {{found.description}}</p>
+    <p>Posted Date: {{found.posted_date}}</p>
+
+    {% if found.image %}
+    <img src="{{url_for('static',filename=found.image)}}" width="300" height="200">
+    {% endif %}
+    <div style="margin-bottom: 3%;margin-bottom: 3%"><a href="{{url_for('main.delete_found',id = found.id)}}"><i class="fa fa-trash"></i>Delete</a>
+        <a href="{{url_for('main.update_found',id = found.id)}}"><i class="fas fa-edit"></i>Edit</a></div>
+</div>  
 </div>
 {%endfor%}
+</div>
+
 {%endmacro%}

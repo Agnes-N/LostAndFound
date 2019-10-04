@@ -49,6 +49,7 @@ def declare_lost():
 @main.route('/lost/<int:id>/delete', methods = ['GET','POST'])
 @login_required
 def delete(id):
+
     current_post = Lost.query.filter_by(id = id).first()
 
     if current_post.user != current_user:
@@ -56,6 +57,7 @@ def delete(id):
     db.session.delete(current_post)
     db.session.commit()
     return redirect(url_for('.lost'))
+
 
 @main.route('/lost/<int:id>/update',methods= ['GET','POST'])
 @login_required
