@@ -1,29 +1,58 @@
-{% extends 'base.html' %}
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
 
-<!-- <img src="https://images-na.ssl-images-amazon.com/images/I/71cXO+fpC0L._RI_.jpg" width="100%" height="80%"> -->
-<div class="container">
-   
-    <h1 class="text-center"> {{ title }} </h1>
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Satisfy&display=swap" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <title>Document</title>
+</head>
 
-    <div class="row">
-            <div class="col-md-6" style="margin-top:8%">
-                    <blockquote class="text-center text-lg">
-                          
-                    </blockquote>
-            </div>
+<body>
+        {% extends 'base.html' %}
+        {% block content %}
+        <div class="parallax" style="background-image: url('static/images/lf.jpeg');"></div>
+        <style>
+                .parallax {
 
-            <div class="col-md-6" style="margin-top:5%">
-                    <img src="https://www.start-business-online.com/images/article_manager_uploads/blog.jpg" width="300"height="200">
-            {% if current_user.is_authenticated %}
-            <h3 class="text" style="margin-left:6%"><a href="{{url_for('auth.logout')}}"><strong>Log Out</strong></a></h3>
-            {% else %}
-            <h3 class="text" style="margin-left:6%"><a href="{{url_for('auth.login')}}"><strong>Sign in</strong></a></h3>
-            {%endif%}                                   
-            </div>
-    </div>
-   
-    <p>hello</p>
-</div>
-<div></div>
-{% endblock %}
+                        min-height: 800px;
+
+
+                        background-attachment: fixed;
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                }
+        </style>
+        <div style="background-color:transparent;font-size:26px">
+        you must have at least a general idea of where an item was lost, and you can only hope that whoever found it didn’t decide just to keep it. (Lost-and-found departments are unlikely to have your lost camera, laptop, or wallet—at least not with the money still in it.) Wouldn’t it be nice if there were a general, all-purpose lost-and-found service that didn’t require you to know where your valuables went missing? And wouldn’t it be nice if there were an incentive for the finder to return your lost item rather than just pocketing it? These are precisely the ideas behind several online services.
+        </div>
+        <h1 style="font-family: 'Satisfy', cursive; text-align: center; font-size: 40px;" >CHECH OUT YOUR DOCUMENT</h1>
+        <div class="parallax" style="background-image: url('static/images/document.png');filter: brightness(50%)"></div>
+        <style>
+                .parallax {
+
+                        min-height: 800px;
+                        background-attachment: fixed;
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                }
+        </style>
+
+
+        <div class="footer">
+              <img src="static/images/footer.png" style="margin:auto;" style="text-align:center">
+        </div>
+
+       
+
+
+        {% endblock %}
+</body>
+
+</html>
